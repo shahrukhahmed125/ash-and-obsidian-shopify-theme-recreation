@@ -1,0 +1,111 @@
+<section id="shop" class="py-16 md:py-24 px-4 md:px-12">
+  <div class="flex flex-wrap justify-between items-end gap-5 mb-9">
+    <div>
+      <div class="text-[11px] tracking-[0.3em] uppercase text-[#9a928a] mb-2.5">Drop I</div>
+      <h2 class="font-serif text-[clamp(34px,4vw,56px)] tracking-[0.03em] m-0 text-[#e8e0d4]">
+        {{ section.settings.heading | default: 'Bestsellers' }}
+      </h2>
+    </div>
+
+    <div class="flex flex-wrap gap-2 items-center">
+      <button class="bg-[#e8e0d4] text-[#0b0a0a] border border-[rgba(232,224,212,0.35)] px-4 py-2 text-[10px] tracking-[0.2em] uppercase transition-all" data-filter="All">All</button>
+      <button class="bg-transparent text-[#e8e0d4] border border-[rgba(232,224,212,0.35)] px-4 py-2 text-[10px] tracking-[0.2em] uppercase hover:bg-[rgba(232,224,212,0.1)] transition-all" data-filter="Men">Men</button>
+      <button class="bg-transparent text-[#e8e0d4] border border-[rgba(232,224,212,0.35)] px-4 py-2 text-[10px] tracking-[0.2em] uppercase hover:bg-[rgba(232,224,212,0.1)] transition-all" data-filter="Women">Women</button>
+      <button class="bg-transparent text-[#e8e0d4] border border-[rgba(232,224,212,0.35)] px-4 py-2 text-[10px] tracking-[0.2em] uppercase hover:bg-[rgba(232,224,212,0.1)] transition-all" data-filter="Unisex">Unisex</button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    {%- if section.settings.collection != blank and section.settings.collection.products_count > 0 -%}
+      {% for product in section.settings.collection.products limit: section.settings.products_to_show %}
+        {% render 'product-card', product: product %}
+      {% endfor %}
+    {%- else -%}
+      {% comment %} Fallback authentic demonstration catalog {% endcomment %}
+      <div class="ao-product-card group flex flex-col gap-3">
+        <div class="relative aspect-square overflow-hidden bg-[#161413]">
+          <img src="{{ 'p1-tee.jpg' | asset_url }}" alt="Obsidian Tee" class="w-full h-full object-cover transition-transform duration-900 group-hover:scale-105">
+        </div>
+        <div class="flex justify-between items-start pt-1">
+          <div>
+            <div class="text-xs tracking-[0.14em] uppercase text-[#e8e0d4]">Obsidian Tee</div>
+            <div class="text-sm text-[#d6cdc1] mt-1">$69.00</div>
+          </div>
+          <button onclick="aoToast('Obsidian Tee added to bag')" class="w-8 h-8 rounded-full border border-[rgba(232,224,212,0.45)] flex items-center justify-center text-[#e8e0d4] hover:bg-[#e8e0d4] hover:text-[#0b0a0a] transition-all">&plus;</button>
+        </div>
+      </div>
+
+      <div class="ao-product-card group flex flex-col gap-3">
+        <div class="relative aspect-square overflow-hidden bg-[#161413]">
+          <img src="{{ 'p2-hoodie.jpg' | asset_url }}" alt="Obsidian Crown Hoodie" class="w-full h-full object-cover transition-transform duration-900 group-hover:scale-105">
+        </div>
+        <div class="flex justify-between items-start pt-1">
+          <div>
+            <div class="text-xs tracking-[0.14em] uppercase text-[#e8e0d4]">Obsidian Crown Hoodie</div>
+            <div class="text-sm text-[#d6cdc1] mt-1">$99.00</div>
+          </div>
+          <button onclick="aoToast('Obsidian Crown Hoodie added to bag')" class="w-8 h-8 rounded-full border border-[rgba(232,224,212,0.45)] flex items-center justify-center text-[#e8e0d4] hover:bg-[#e8e0d4] hover:text-[#0b0a0a] transition-all">&plus;</button>
+        </div>
+      </div>
+
+      <div class="ao-product-card group flex flex-col gap-3">
+        <div class="relative aspect-square overflow-hidden bg-[#161413]">
+          <img src="{{ 'p3-vest.jpg' | asset_url }}" alt="Thorn Vest" class="w-full h-full object-cover transition-transform duration-900 group-hover:scale-105">
+        </div>
+        <div class="flex justify-between items-start pt-1">
+          <div>
+            <div class="text-xs tracking-[0.14em] uppercase text-[#e8e0d4]">Thorn Vest</div>
+            <div class="text-sm text-[#d6cdc1] mt-1">$59.00</div>
+          </div>
+          <button onclick="aoToast('Thorn Vest added to bag')" class="w-8 h-8 rounded-full border border-[rgba(232,224,212,0.45)] flex items-center justify-center text-[#e8e0d4] hover:bg-[#e8e0d4] hover:text-[#0b0a0a] transition-all">&plus;</button>
+        </div>
+      </div>
+
+      <div class="ao-product-card group flex flex-col gap-3">
+        <div class="relative aspect-square overflow-hidden bg-[#161413]">
+          <img src="{{ 'p4-heritage.jpg' | asset_url }}" alt="Heritage Tee" class="w-full h-full object-cover transition-transform duration-900 group-hover:scale-105">
+        </div>
+        <div class="flex justify-between items-start pt-1">
+          <div>
+            <div class="text-xs tracking-[0.14em] uppercase text-[#e8e0d4]">Heritage Tee</div>
+            <div class="text-sm text-[#d6cdc1] mt-1">$69.00</div>
+          </div>
+          <button onclick="aoToast('Heritage Tee added to bag')" class="w-8 h-8 rounded-full border border-[rgba(232,224,212,0.45)] flex items-center justify-center text-[#e8e0d4] hover:bg-[#e8e0d4] hover:text-[#0b0a0a] transition-all">&plus;</button>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Bestsellers"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4,
+      "label": "Products to show"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured collection"
+    }
+  ]
+}
+{% endschema %}

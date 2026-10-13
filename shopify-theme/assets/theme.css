@@ -1,0 +1,213 @@
+/* Ash & Obsidian — Authentic Theme CSS */
+:root {
+  --color-bg: #0b0a0a;
+  --color-surface: #100e0e;
+  --color-surface-subtle: #141212;
+  --color-surface-card: #161413;
+  --color-bone: #e8e0d4;
+  --color-bone-muted: #b7aea3;
+  --color-bone-faint: #9a928a;
+  --color-crimson: #b3262b;
+  --color-blood: #7a1a1d;
+  --color-blood-glow: #e0343a;
+  --border-subtle: rgba(232, 224, 212, 0.12);
+  --border-medium: rgba(232, 224, 212, 0.25);
+  --border-prominent: rgba(232, 224, 212, 0.45);
+  --font-serif: 'Cinzel', serif;
+  --font-sans: 'Jost', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: var(--color-bg);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg);
+  color: var(--color-bone);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+}
+
+a {
+  color: var(--color-bone);
+  text-decoration: none;
+  transition: color 0.25s ease, opacity 0.25s ease;
+}
+
+a:hover {
+  color: #ffffff;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+::selection {
+  background: var(--color-blood);
+  color: #ffffff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(232, 224, 212, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-crimson);
+}
+
+/* Utility Containers */
+.ao-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-left: clamp(16px, 4vw, 48px);
+  padding-right: clamp(16px, 4vw, 48px);
+}
+
+/* ═══════════════════════════════════════════════════════
+   PREMIUM LUXURY BUTTONS & HOVER
+   ═══════════════════════════════════════════════════════ */
+.ao-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 28px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.2, 0.6, 0.2, 1);
+  z-index: 1;
+}
+
+/* Liquid Light Sweep Effect on Hover */
+.ao-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 40%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0.15) 60%,
+    transparent 100%
+  );
+  transition: transform 0.75s ease-out;
+  transform: skewX(-25deg);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.ao-btn:hover::before {
+  transform: translateX(320%) skewX(-25deg);
+}
+
+.ao-btn-primary {
+  background: var(--color-bone);
+  color: #0b0a0a;
+  border: 1px solid var(--color-bone);
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+.ao-btn-primary:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(232, 224, 212, 0.25), 0 0 20px rgba(179, 38, 43, 0.3);
+}
+
+.ao-btn-outline {
+  background: rgba(11, 10, 10, 0.6);
+  color: var(--color-bone);
+  border: 1px solid rgba(232, 224, 212, 0.5);
+  backdrop-filter: blur(8px);
+}
+.ao-btn-outline:hover {
+  border-color: #b3262b;
+  color: #ffffff;
+  background: rgba(179, 38, 43, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(179, 38, 43, 0.35), 0 0 15px rgba(179, 38, 43, 0.2);
+}
+
+/* Logo Shimmer & Glow */
+@keyframes logoGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(232, 224, 212, 0.2)) drop-shadow(0 0 1px rgba(179, 38, 43, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(232, 224, 212, 0.6)) drop-shadow(0 0 22px rgba(179, 38, 43, 0.6));
+  }
+}
+.ao-logo-animated {
+  animation: logoGlow 4s ease-in-out infinite;
+}
+
+/* Toast */
+.ao-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  z-index: 100;
+  transform: translate(-50%, 20px);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.4s ease, visibility 0.4s;
+  background: var(--color-bone);
+  color: #0b0a0a;
+  padding: 14px 24px;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+.ao-toast.active {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Color filters for variants */
+.filter-obsidian { filter: none; }
+.filter-ash { filter: grayscale(1) brightness(1.75) contrast(0.85); }
+.filter-blood { filter: sepia(1) saturate(4) hue-rotate(-38deg) brightness(0.72); }
+.filter-bone { filter: grayscale(1) invert(0.82) contrast(0.9); }

@@ -1,0 +1,120 @@
+/* Customer Reviews Dual Marquee */
+.ao-reviews-section {
+  position: relative;
+  background-color: #0b0a0a;
+  overflow: hidden;
+  padding: clamp(64px, 8vw, 110px) 0;
+  border-top: 1px solid rgba(232, 224, 212, 0.12);
+  border-bottom: 1px solid rgba(232, 224, 212, 0.12);
+}
+
+.ao-marquee-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 36px;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.ao-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 20px;
+  will-change: transform;
+}
+
+/* Row 1: Right to left */
+.ao-marquee-left {
+  animation: aoMarqueeLeft var(--speed-row-1, 45s) linear infinite;
+}
+
+/* Row 2: Left to right */
+.ao-marquee-right {
+  animation: aoMarqueeRight var(--speed-row-2, 50s) linear infinite;
+}
+
+.ao-marquee-wrapper:hover .ao-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes aoMarqueeLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes aoMarqueeRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.ao-review-card {
+  width: clamp(280px, 30vw, 380px);
+  flex-shrink: 0;
+  background: #110f0f;
+  border: 1px solid rgba(232, 224, 212, 0.14);
+  padding: 24px 24px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  transition: border-color 0.3s ease, transform 0.3s ease, background 0.3s ease;
+  user-select: none;
+}
+
+.ao-review-card:hover {
+  border-color: rgba(179, 38, 43, 0.6);
+  background: #151313;
+  transform: translateY(-2px);
+}
+
+.ao-review-stars {
+  display: flex;
+  gap: 4px;
+  color: #b3262b;
+}
+
+.ao-review-quote {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #d6cdc1;
+  font-weight: 300;
+  margin: 0;
+}
+
+.ao-review-author {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: #e8e0d4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ao-verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #9a928a;
+}
+
+.ao-verified-badge svg {
+  color: #b3262b;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ao-marquee-left, .ao-marquee-right {
+    animation: none !important;
+  }
+  .ao-marquee-wrapper {
+    overflow-x: auto;
+    scrollbar-width: thin;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}

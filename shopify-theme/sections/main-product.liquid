@@ -1,0 +1,37 @@
+<section class="py-12 md:py-20 px-4 md:px-12">
+  <div class="ao-container grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
+    <div class="aspect-square bg-[#161413] overflow-hidden">
+      {% if product.featured_image != blank %}
+        <img src="{{ product.featured_image | image_url: width: 1000 }}" alt="{{ product.title | escape }}" class="w-full h-full object-cover">
+      {% else %}
+        <img src="{{ 'p1-tee.jpg' | asset_url }}" alt="{{ product.title | default: 'Ash & Obsidian Product' }}" class="w-full h-full object-cover">
+      {% endif %}
+    </div>
+
+    <div class="flex flex-col gap-6 justify-center">
+      <div class="text-xs tracking-[0.3em] uppercase text-[#b3262b]">Drop I Edition</div>
+      <h1 class="font-serif text-3xl md:text-5xl text-[#e8e0d4] m-0">{{ product.title | default: 'Obsidian Tee' }}</h1>
+      <div class="text-xl text-[#d6cdc1]">{{ product.price | default: 6900 | money }}</div>
+
+      <p class="text-base text-[#b7aea3] leading-relaxed m-0">
+        {{ product.description | default: '320 GSM heavyweight cotton garment-dyed for maximum hand feel and durability. Drop shoulder oversized drape finished with raised puff crest print.' }}
+      </p>
+
+      {% form 'product', product %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <div class="flex gap-4 mb-4">
+          <div class="text-xs uppercase tracking-widest text-[#9a928a]">Color: <span class="text-[#e8e0d4]">Obsidian</span></div>
+        </div>
+        <button type="submit" class="w-full ao-btn ao-btn-primary">
+          Add to Bag &rarr;
+        </button>
+      {% endform %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Main product",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,40 @@
+{% if section.settings.show_announcement %}
+  <div class="ao-announcement-bar bg-[#100e0e] border-b border-[rgba(232,224,212,0.12)] py-2.5 px-4 text-center overflow-hidden">
+    <div class="flex justify-center items-center gap-6 text-[10px] md:text-[11px] tracking-[0.24em] uppercase text-[#d6cdc1]">
+      <span class="flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#b3262b]"></span>
+        {{ section.settings.announcement_text }}
+      </span>
+      {% if section.settings.secondary_text != blank %}
+        <span class="hidden md:inline text-[rgba(232,224,212,0.4)]">&bull;</span>
+        <span class="hidden md:inline">{{ section.settings.secondary_text }}</span>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "Drop I Now Live — Complimentary shipping over $100"
+    },
+    {
+      "type": "text",
+      "id": "secondary_text",
+      "label": "Secondary text",
+      "default": "Forged in darkness"
+    }
+  ]
+}
+{% endschema %}

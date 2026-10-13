@@ -1,0 +1,63 @@
+<section id="collections" class="pt-6 px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4.5">
+  {% for block in section.blocks %}
+    <div class="relative aspect-[1/1.02] overflow-hidden bg-[#141212] group cursor-pointer" {{ block.shopify_attributes }}>
+      <div class="absolute inset-0">
+        {% if block.settings.image != blank %}
+          <img src="{{ block.settings.image | image_url: width: 900 }}" alt="{{ block.settings.title }}" class="w-full h-full object-cover brightness-[0.8] transition-all duration-1200 ease-[cubic-bezier(0.2,0.6,0.2,1)] group-hover:brightness-95 group-hover:scale-105">
+        {% else %}
+          {% assign default_img = 'men-collection.jpg' %}
+          {% if forloop.index == 2 %}{% assign default_img = 'women-collection.jpg' %}{% endif %}
+          {% if forloop.index == 3 %}{% assign default_img = 'unisex-collection.jpg' %}{% endif %}
+          <img src="{{ default_img | asset_url }}" alt="{{ block.settings.title }}" class="w-full h-full object-cover brightness-[0.8] transition-all duration-1200 ease-[cubic-bezier(0.2,0.6,0.2,1)] group-hover:brightness-95 group-hover:scale-105">
+        {% endif %}
+      </div>
+
+      <div class="absolute inset-0 pointer-events-none bg-[linear-gradient(0deg,rgba(11,10,10,0.85)_0%,rgba(11,10,10,0)_50%)] flex flex-col justify-end items-center pb-7 gap-2">
+        <h2 class="font-serif text-[clamp(26px,2.6vw,36px)] tracking-[0.06em] uppercase text-[#e8e0d4] m-0">
+          {{ block.settings.title }}
+        </h2>
+        <div class="text-xs tracking-[0.14em] text-[#d6cdc1]">Explore &rarr;</div>
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+{% schema %}
+{
+  "name": "Collections grid",
+  "blocks": [
+    {
+      "type": "collection_card",
+      "name": "Collection card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Men"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collections grid",
+      "blocks": [
+        { "type": "collection_card", "settings": { "title": "Men" } },
+        { "type": "collection_card", "settings": { "title": "Women" } },
+        { "type": "collection_card", "settings": { "title": "Unisex" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

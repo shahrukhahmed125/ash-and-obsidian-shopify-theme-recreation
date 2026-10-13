@@ -1,0 +1,75 @@
+<section id="symbols" class="py-16 md:py-28 px-4 md:px-12">
+  <div class="flex flex-wrap justify-between items-end gap-4 mb-8">
+    <div>
+      <h2 class="font-serif text-[clamp(28px,3vw,42px)] m-0 mb-2.5 tracking-[0.04em] text-[#e8e0d4]">
+        {{ section.settings.heading | default: 'The Seven Symbols' }}
+      </h2>
+      <div class="text-xs tracking-[0.2em] uppercase text-[#9a928a]">
+        {{ section.settings.subheading | default: 'Some paths are chosen for us. Others, we choose ourselves.' }}
+      </div>
+    </div>
+    <div class="text-[11px] tracking-[0.2em] uppercase text-[#9a928a]">Select a symbol</div>
+  </div>
+
+  {% comment %} 7 Symbols selector grid {% endcomment %}
+  <div class="grid grid-cols-7 gap-2.5 overflow-x-auto pb-2 scrollbar-thin">
+    {% assign sym_names = "Pomegranate,Thorns,Ash,Obsidian,Crown,Cerberus,Kingdom" | split: "," %}
+    {% assign sym_meanings = "The Choice,The Cost,What You Leave Behind,What You Become,What You Earn,The Gate You Must Pass,The Life You Choose to Build" | split: "," %}
+    {% assign sym_files = "s1-pomegranate.png,s2-thorns.png,s3-ash.png,s4-obsidian.png,s5-crown.png,s6-cerberus.png,s7-kingdom.png" | split: "," %}
+
+    {% for name in sym_names %}
+      {% assign idx = forloop.index0 %}
+      <button data-symbol-tab="{{ idx }}" class="bg-[#0f0d0d] border border-[rgba(232,224,212,0.15)] text-[#e8e0d4] p-3 md:p-4.5 flex flex-col items-center gap-3 text-center transition-all duration-300 hover:border-[rgba(232,224,212,0.5)] [&.active]:bg-[#1a1414] [&.active]:border-[#b3262b] [&.active]:-translate-y-1 {% if forloop.first %}active{% endif %}">
+        <img src="{{ sym_files[idx] | asset_url }}" alt="The {{ name }}" class="w-full aspect-[86/115] object-contain block">
+        <div class="font-serif text-[clamp(11px,1vw,13px)] tracking-[0.08em] uppercase leading-tight">The {{ name }}</div>
+        <div class="text-[12px] text-[#9a928a] leading-tight">{{ sym_meanings[idx] }}</div>
+      </button>
+    {% endfor %}
+  </div>
+
+  {% comment %} Active symbol detail panels {% endcomment %}
+  {% assign sym_numerals = "I,II,III,IV,V,VI,VII" | split: "," %}
+  {% assign sym_lores = "Once tasted, there is no return. The pomegranate marks the moment you decide who you will be.|Nothing worth holding comes without blood. The thorns remember every price you paid.|Everything you burned to get here. Ash is proof that you did not stay the same.|Glass born from fire and cooled in the dark. Sharp, quiet, unbreakable.|Not given. Not inherited. Forged piece by piece by the one who wears it.|Three heads, three trials. Every kingdom is guarded, and the guard is often yourself.|The final symbol. Walls you raised, rules you wrote, a place that answers only to you." | split: "|" %}
+
+  <div class="mt-6 border border-[rgba(232,224,212,0.15)] bg-[#110f0f]">
+    {% for name in sym_names %}
+      {% assign idx = forloop.index0 %}
+      <div data-symbol-content="{{ idx }}" class="grid grid-cols-1 md:grid-cols-2 {% unless forloop.first %}hidden{% endunless %}">
+        <div class="bg-[#0b0a0a] flex items-center justify-center p-7 min-h-[280px]">
+          <img src="{{ sym_files[idx] | asset_url }}" alt="The {{ name }}" class="h-60 max-w-full object-contain">
+        </div>
+        <div class="p-7 md:p-14 flex flex-col justify-center gap-4">
+          <div class="text-[11px] tracking-[0.3em] uppercase text-[#b3262b]">Symbol {{ sym_numerals[idx] }} of VII</div>
+          <div class="font-serif text-[clamp(28px,3vw,40px)] tracking-[0.04em] text-[#e8e0d4]">The {{ name }}</div>
+          <div class="text-[13px] tracking-[0.2em] uppercase text-[#d6cdc1]">{{ sym_meanings[idx] }}</div>
+          <p class="text-base leading-relaxed text-[#b7aea3] m-0 max-w-[460px]">{{ sym_lores[idx] }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "The Seven Symbols",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Seven Symbols"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Some paths are chosen for us. Others, we choose ourselves."
+    }
+  ],
+  "presets": [
+    {
+      "name": "The Seven Symbols"
+    }
+  ]
+}
+{% endschema %}

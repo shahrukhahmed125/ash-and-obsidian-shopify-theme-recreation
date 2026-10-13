@@ -1,0 +1,13 @@
+<section class="py-16 px-4 md:px-12">
+  <div class="ao-container">
+    <h1 class="font-serif text-3xl md:text-5xl text-[#e8e0d4] mb-8 text-center">Search Results</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {% for item in search.results %}
+        {% if item.object_type == 'product' %}
+          {% render 'product-card', product: item %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %} { "name": "Main search" } {% endschema %}

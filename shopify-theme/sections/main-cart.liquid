@@ -1,0 +1,28 @@
+<section class="py-16 px-4 md:px-12">
+  <div class="ao-container max-w-3xl">
+    <h1 class="font-serif text-3xl md:text-5xl text-[#e8e0d4] mb-8 text-center">Your Bag</h1>
+    <div class="border border-[rgba(232,224,212,0.12)] p-6 bg-[#110f0f]">
+      {% if cart.empty? %}
+        <div class="text-center py-12">
+          <p class="text-[#b7aea3] mb-6">Your bag is currently empty.</p>
+          <a href="{{ routes.all_products_collection_url }}" class="ao-btn ao-btn-primary">Browse Drop I &rarr;</a>
+        </div>
+      {% else %}
+        <form action="{{ routes.cart_url }}" method="post">
+          {% for item in cart.items %}
+            <div class="flex justify-between py-4 border-b border-[rgba(232,224,212,0.08)]">
+              <div>{{ item.title }} x {{ item.quantity }}</div>
+              <div>{{ item.final_line_price | money }}</div>
+            </div>
+          {% endfor %}
+          <div class="flex justify-between pt-6 text-lg font-serif">
+            <span>Subtotal</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+          <button type="submit" name="checkout" class="ao-btn ao-btn-primary w-full mt-6">Checkout &rarr;</button>
+        </form>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% schema %} { "name": "Main cart" } {% endschema %}

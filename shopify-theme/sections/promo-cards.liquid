@@ -1,0 +1,36 @@
+<section class="grid grid-cols-1 md:grid-cols-2 gap-1 px-1">
+  <div class="relative min-h-[380px] overflow-hidden flex items-center p-8 md:p-14">
+    <div class="absolute top-0 right-0 bottom-0 w-[72%] bg-cover bg-[65%_center] no-repeat" style="background-image: url('{{ 'crafted-new.jpg' | asset_url }}');"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(90deg,#0b0a0a_35%,rgba(11,10,10,0.4)_70%,rgba(11,10,10,0.1))]"></div>
+    <div class="relative max-w-[300px] flex flex-col gap-4.5 items-start z-10">
+      <h3 class="font-serif text-[clamp(26px,2.6vw,36px)] leading-tight m-0 text-[#e8e0d4]">Crafted for the real ones</h3>
+      <p class="text-[15px] leading-relaxed text-[#b7aea3] m-0">Premium fabrics. Timeless designs. Built to last.</p>
+      <button onclick="document.getElementById('modal-details').classList.add('open')" class="ao-btn ao-btn-outline">
+        The details <span>&rarr;</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="relative min-h-[380px] overflow-hidden flex items-center p-8 md:p-14">
+    <div class="absolute top-0 right-0 bottom-0 w-[72%] bg-cover bg-[70%_center] no-repeat" style="background-image: url('{{ 'packaging-box.jpg' | asset_url }}');"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(90deg,#0b0a0a_40%,rgba(11,10,10,0.4)_70%,rgba(11,10,10,0.1))]"></div>
+    <div class="relative max-w-[300px] flex flex-col gap-4.5 items-start z-10">
+      <h3 class="font-serif text-[clamp(26px,2.6vw,36px)] leading-tight m-0 text-[#e8e0d4]">More than the garment</h3>
+      <p class="text-[15px] leading-relaxed text-[#b7aea3] m-0">Every order comes with a piece of the kingdom. Custom packaging, lore card and collectible symbol card.</p>
+      <button onclick="document.getElementById('modal-packaging').classList.add('open')" class="ao-btn ao-btn-outline">
+        The packaging <span>&rarr;</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Promo banners",
+  "presets": [
+    {
+      "name": "Promo banners"
+    }
+  ]
+}
+{% endschema %}

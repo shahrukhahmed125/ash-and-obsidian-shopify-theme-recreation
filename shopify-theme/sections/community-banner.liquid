@@ -1,0 +1,53 @@
+<section class="relative min-h-[480px] flex items-center justify-end overflow-hidden my-1 px-5 md:px-20 py-16">
+  <div class="absolute top-0 left-0 bottom-0 w-[min(70%,1100px)] bg-cover bg-[30%_center] no-repeat" style="background-image: url('{{ 'inner-circle-bg.jpg' | asset_url }}');"></div>
+  <div class="absolute inset-0 bg-[linear-gradient(270deg,#120909_32%,rgba(18,9,9,0.7)_50%,rgba(11,10,10,0)_72%),radial-gradient(ellipse_at_85%_50%,rgba(122,26,29,0.28),transparent_60%)]"></div>
+
+  <div class="relative max-w-[460px] text-center flex flex-col items-center gap-5 z-10">
+    <div class="flex items-center gap-2.5 text-[#9a928a]">
+      <span class="w-[60px] h-[1px] bg-current"></span>
+      <span class="text-sm">&#10022;</span>
+      <span class="w-[60px] h-[1px] bg-current"></span>
+    </div>
+
+    <h2 class="font-serif text-[clamp(34px,4vw,58px)] leading-tight m-0 text-[#e8e0d4]">
+      {{ section.settings.heading | default: 'Built by different kind' }}
+    </h2>
+    <p class="text-base leading-relaxed text-[#d6cdc1] m-0">
+      {{ section.settings.text | default: 'A community for those who move differently, think deeper and create their own path.' }}
+    </p>
+    <a href="#footer" class="ao-btn ao-btn-outline">
+      {{ section.settings.button_text | default: 'Join the inner circle' }} <span>&rarr;</span>
+    </a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Community banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Built by different kind"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "A community for those who move differently, think deeper and create their own path."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Join the inner circle"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Community banner"
+    }
+  ]
+}
+{% endschema %}

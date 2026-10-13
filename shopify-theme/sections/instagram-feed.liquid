@@ -1,0 +1,43 @@
+<section class="py-12 md:py-20 px-4 md:px-8">
+  <div class="flex justify-between items-center mb-4.5 px-1">
+    <div class="text-xs tracking-[0.2em] uppercase text-[#e8e0d4]">
+      {{ section.settings.handle | default: '@ashandobsidian' }}
+    </div>
+    <a href="{{ section.settings.link | default: 'https://instagram.com' }}" target="_blank" rel="noopener" class="text-[11px] tracking-[0.2em] uppercase border-b border-[rgba(232,224,212,0.5)] pb-1 hover:text-white">
+      Follow us &rarr;
+    </a>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-6 gap-2">
+    {% assign ig_images = "crafted-new.jpg,ig2-new.jpg,ig3-new.jpg,ig4-new.jpg,ig5-new.jpg,ig6-new.jpg" | split: "," %}
+    {% for img in ig_images %}
+      <div class="aspect-[106/124] overflow-hidden bg-[#141212] group cursor-pointer" onclick="aoToast('@ashandobsidian')">
+        <img src="{{ img | asset_url }}" alt="Instagram" class="w-full h-full object-cover brightness-85 group-hover:brightness-105 group-hover:scale-105 transition-all duration-700">
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Instagram feed",
+  "settings": [
+    {
+      "type": "text",
+      "id": "handle",
+      "label": "Handle",
+      "default": "@ashandobsidian"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Profile link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram feed"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,93 @@
+<section id="top" class="relative min-h-[max(600px,92vh)] overflow-hidden flex items-center px-5 md:px-20 py-24 md:py-32">
+  <div class="absolute inset-0 bg-cover bg-[70%_30%] no-repeat will-change-transform" style="background-image: url('{{ section.settings.image | image_url: width: 2000 | default: 'hero-bg.jpg' | asset_url }}');"></div>
+
+  {% comment %} Multi-stop Atmospheric Dark Gradient Overlays (100% GPU accelerated) {% endcomment %}
+  <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,10,10,0.94)_0%,rgba(11,10,10,0.78)_30%,rgba(11,10,10,0.15)_60%),linear-gradient(0deg,#0b0a0a_0%,rgba(11,10,10,0)_30%),linear-gradient(180deg,rgba(11,10,10,0.65)_0%,rgba(11,10,10,0)_20%)] pointer-events-none z-[1]"></div>
+
+  <div class="relative max-w-[620px] z-10">
+    <div class="inline-flex items-center gap-2 text-xs tracking-[0.32em] uppercase text-[#b7aea3] mb-5 bg-[#0b0a0a]/60 backdrop-blur-sm px-3 py-1 border border-[rgba(232,224,212,0.12)]">
+      <span class="w-1.5 h-1.5 rounded-full bg-[#b3262b] animate-pulse"></span>
+      {{ section.settings.kicker | default: 'Forged in darkness' }}
+    </div>
+    <h1 class="font-serif text-[clamp(42px,6.5vw,90px)] leading-[1.01] mb-6 tracking-[0.02em] text-[#e8e0d4] text-balance">
+      {{ section.settings.heading | default: 'Create your own kingdom' }}
+    </h1>
+    <p class="text-[clamp(16px,1.5vw,20px)] leading-normal text-[#d6cdc1] mb-9 max-w-[380px] font-light">
+      {{ section.settings.subheading | default: 'Darkness forged. Strength earned. Kingdom chosen.' }}
+    </p>
+
+    <div class="flex flex-wrap gap-4">
+      <a href="{{ section.settings.button_1_link | default: '#shop' }}" class="ao-btn ao-btn-primary group">
+        {{ section.settings.button_1_text | default: 'Shop Drop I' }} <span>&rarr;</span>
+      </a>
+      <a href="{{ section.settings.button_2_link | default: '#about' }}" class="ao-btn ao-btn-outline">
+        {{ section.settings.button_2_text | default: 'Discover the story' }}
+      </a>
+    </div>
+  </div>
+
+  <div class="absolute right-[clamp(20px,4vw,56px)] bottom-10 whitespace-nowrap flex items-center gap-2.5 text-[11px] font-medium tracking-[0.24em] uppercase text-white bg-[#0b0a0a]/75 rounded-full backdrop-blur-md px-4 py-2 border border-[rgba(232,224,212,0.2)] shadow-lg z-10">
+    <span class="w-2 h-2 rounded-full bg-[#e0343a] shadow-[0_0_12px_#e0343a]"></span>
+    <span>Drop I</span>
+    <span class="w-3.5 h-[1px] bg-white/50"></span>
+    <span>Now live</span>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Banner image"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Forged in darkness"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Create your own kingdom"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Darkness forged. Strength earned. Kingdom chosen."
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "Button 1 label",
+      "default": "Shop Drop I"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Button 1 link"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Button 2 label",
+      "default": "Discover the story"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Button 2 link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero banner"
+    }
+  ]
+}
+{% endschema %}

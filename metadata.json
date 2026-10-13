@@ -1,0 +1,6 @@
+{
+  "name": "Ash & Obsidian - A&O Shopify Theme Recreation",
+  "description": "Pixel-perfect recreation of the Ash & Obsidian (A&O) luxury dark streetwear storefront with complete Shopify Online Store 2.0 theme source, dual-row animated customer reviews, custom cursor, and downloadable theme package.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

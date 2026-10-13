@@ -1,0 +1,65 @@
+<footer id="footer" class="border-t border-[rgba(232,224,212,0.12)] pt-14 pb-7 px-5 md:px-12 bg-[#0b0a0a]">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+    <div class="flex flex-col gap-4.5">
+      <img src="{{ 'ao-logo.png' | asset_url }}" alt="Ash &amp; Obsidian" class="w-72 max-w-full block">
+      <div class="font-serif text-xs tracking-[0.24em] uppercase text-[#d6cdc1]">
+        Create your own kingdom
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-2.5 text-sm">
+      <div class="text-[11px] tracking-[0.24em] uppercase mb-1.5 text-[#e8e0d4]">Shop</div>
+      <a href="#shop" class="text-[#b7aea3] hover:text-white">All Products</a>
+      <a href="#collections" class="text-[#b7aea3] hover:text-white">Men</a>
+      <a href="#collections" class="text-[#b7aea3] hover:text-white">Women</a>
+      <a href="#collections" class="text-[#b7aea3] hover:text-white">Unisex</a>
+      <a href="#collections" class="text-[#b7aea3] hover:text-white">Collections</a>
+    </div>
+
+    <div class="flex flex-col gap-2.5 text-sm">
+      <div class="text-[11px] tracking-[0.24em] uppercase mb-1.5 text-[#e8e0d4]">About</div>
+      <a href="#about" class="text-[#b7aea3] hover:text-white">Our Story</a>
+      <a href="#symbols" class="text-[#b7aea3] hover:text-white">The Seven Symbols</a>
+      <a href="#sustainability" onclick="event.preventDefault(); aoToast('Garment-dyed small batch production');" class="text-[#b7aea3] hover:text-white">Sustainability</a>
+      <a href="#sizing" onclick="event.preventDefault(); document.getElementById('modal-details').classList.add('open')" class="text-[#b7aea3] hover:text-white">Size Guide</a>
+      <a href="#contact" class="text-[#b7aea3] hover:text-white">Contact</a>
+    </div>
+
+    <div class="flex flex-col gap-3.5">
+      <div class="text-[11px] tracking-[0.24em] uppercase text-[#e8e0d4]">Join the kingdom</div>
+      <p class="text-xs text-[#b7aea3] leading-relaxed m-0">
+        Be first to know about new drops, secret releases and private events.
+      </p>
+      {% form 'customer', class: 'flex mt-2' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input type="email" name="contact[email]" placeholder="Enter your email" required class="flex-1 bg-transparent border-0 border-b border-[rgba(232,224,212,0.3)] text-xs text-[#e8e0d4] py-2 focus:outline-none focus:border-[#b3262b] placeholder:text-[#9a928a]">
+        <button type="submit" class="text-xs tracking-[0.2em] uppercase text-[#e8e0d4] hover:text-white pl-3 border-b border-[rgba(232,224,212,0.3)]">
+          Join &rarr;
+        </button>
+      {% endform %}
+
+      <div class="flex gap-4 mt-3 text-xs tracking-wider uppercase">
+        <a href="https://instagram.com" target="_blank" class="text-[#b7aea3] hover:text-white">Instagram</a>
+        <a href="https://tiktok.com" target="_blank" class="text-[#b7aea3] hover:text-white">TikTok</a>
+        <a href="https://youtube.com" target="_blank" class="text-[#b7aea3] hover:text-white">YouTube</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-14 pt-5.5 border-t border-[rgba(232,224,212,0.12)] flex flex-wrap justify-between gap-4 text-xs text-[#8a837b]">
+    <div>&copy; {{ 'now' | date: '%Y' }} Ash &amp; Obsidian. All rights reserved.</div>
+    <div class="flex flex-wrap gap-6">
+      <a href="#" onclick="event.preventDefault(); aoToast('Privacy Policy');" class="text-[#8a837b] hover:text-[#e8e0d4]">Privacy Policy</a>
+      <a href="#" onclick="event.preventDefault(); aoToast('Complimentary shipping over $100');" class="text-[#8a837b] hover:text-[#e8e0d4]">Shipping Policy</a>
+      <a href="#" onclick="event.preventDefault(); aoToast('30-day hassle-free returns');" class="text-[#8a837b] hover:text-[#e8e0d4]">Returns</a>
+      <a href="#" onclick="event.preventDefault(); aoToast('Terms of Service');" class="text-[#8a837b] hover:text-[#e8e0d4]">Terms</a>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": []
+}
+{% endschema %}

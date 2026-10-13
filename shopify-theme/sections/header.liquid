@@ -1,0 +1,54 @@
+<header class="ao-header sticky top-0 left-0 right-0 z-40 h-[84px] grid grid-cols-[1fr_auto_1fr] items-center px-4 md:px-12 bg-[#0b0a0a]/80 border-b border-[rgba(232,224,212,0.12)] backdrop-blur-md transition-all duration-400">
+  <nav class="flex gap-4 md:gap-8 text-[11px] tracking-[0.18em] uppercase" aria-label="Main navigation">
+    {% for link in linklists[section.settings.menu].links %}
+      <a href="{{ link.url }}" class="text-[#e8e0d4] opacity-85 hover:opacity-100 hover:text-white transition-opacity">{{ link.title }}</a>
+    {% else %}
+      <a href="#shop" class="text-[#e8e0d4] opacity-85 hover:opacity-100 hover:text-white transition-opacity">Shop</a>
+      <a href="#collections" class="text-[#e8e0d4] opacity-85 hover:opacity-100 hover:text-white transition-opacity">Collections</a>
+      <a href="#about" class="text-[#e8e0d4] opacity-85 hover:opacity-100 hover:text-white transition-opacity">About</a>
+    {% endfor %}
+  </nav>
+
+  <a href="{{ routes.root_url }}" class="flex justify-center group relative px-3 py-1" aria-label="{{ shop.name }}">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(179,38,43,0.35)_0%,rgba(232,224,212,0.15)_40%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg pointer-events-none"></div>
+    {% if section.settings.logo != blank %}
+      <img src="{{ section.settings.logo | image_url: width: 240 }}" alt="{{ shop.name }}" class="ao-logo-animated h-[clamp(38px,4.8vw,58px)] w-auto block transition-transform duration-500 group-hover:scale-105">
+    {% else %}
+      <img src="{{ 'ao-logo.png' | asset_url }}" alt="Ash &amp; Obsidian" class="ao-logo-animated h-[clamp(38px,4.8vw,58px)] w-auto block transition-transform duration-500 group-hover:scale-105">
+    {% endif %}
+  </a>
+
+  <div class="flex justify-end items-center gap-4 md:gap-5">
+    <button data-search-trigger aria-label="Search" class="p-2 text-[#e8e0d4] hover:text-white transition-colors">
+      {% render 'icon', name: 'search' %}
+    </button>
+    <a href="{{ routes.account_url | default: '#account' }}" onclick="if(!this.getAttribute('href').startsWith('/')) { event.preventDefault(); aoToast('Account portal opening soon'); }" aria-label="Account" class="p-2 text-[#e8e0d4] hover:text-white transition-colors">
+      {% render 'icon', name: 'account' %}
+    </a>
+    <button data-cart-trigger aria-label="Bag" class="p-2 text-[#e8e0d4] hover:text-white transition-colors relative">
+      {% render 'icon', name: 'bag' %}
+      <span data-cart-count class="absolute -top-1 -right-1 min-w-4 h-4 rounded-full bg-[#8e1b1f] text-white text-[10px] flex items-center justify-center px-1 font-sans shadow-[0_0_8px_#b3262b]">
+        {{ cart.item_count }}
+      </span>
+    </button>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}
