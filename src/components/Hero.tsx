@@ -19,10 +19,17 @@ export const Hero: React.FC<HeroProps> = ({ onShopClick, onStoryClick }) => {
       id="top"
       className="relative min-h-[max(600px,92vh)] overflow-hidden flex items-center px-5 md:px-20 py-24 md:py-32"
     >
-      {/* Authentic Original Banner Background with GPU Acceleration */}
-      <div
-        className="absolute inset-0 bg-cover bg-[70%_30%] no-repeat will-change-transform"
-        style={{ backgroundImage: `url('/assets/hero-bg.jpg')` }}
+      {/* Authentic Original Banner Background */}
+      <video
+        className="absolute inset-0 h-full w-full object-cover object-[70%_30%] will-change-transform"
+        src="/assets/hero-bg.mp4"
+        poster="/assets/hero-bg.jpg"
+        autoPlay
+        loop
+        muted
+        playsInline
+        aria-hidden="true"
+        tabIndex={-1}
       />
 
       {/* Atmospheric Multi-stop Gradient Overlays (100% GPU composited, zero CPU overhead) */}

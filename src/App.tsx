@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Preloader } from './components/Preloader';
 import { CustomCursor } from './components/CustomCursor';
+import { ParticleEffect } from './components/ParticleEffect';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { CollectionsGrid } from './components/CollectionsGrid';
@@ -22,10 +23,8 @@ import { ThemeGuideModal } from './components/ThemeGuideModal';
 import { PRODUCTS, Product } from './data/storeData';
 
 export default function App() {
-  // Theme state: Obsidian Dark (default luxury) vs Ivory Light
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const [theme] = useState<'dark' | 'light'>('dark');
   const isLight = theme === 'light';
-  const toggleTheme = () => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
 
   // App views
   const [activeTab, setActiveTab] = useState<'storefront' | 'theme-code'>('storefront');
@@ -126,6 +125,7 @@ export default function App() {
       {activeTab === 'theme-code' ? (
         <ThemeExplorer />
       ) : (
+        <>
         <main className={`flex-1 transition-all duration-300 ${getViewportWidth()}`}>
           {/* Header & Announcement Bar */}
           <Header
@@ -135,7 +135,6 @@ export default function App() {
             onOpenModal={(modalKey) => setActiveModal(modalKey)}
             onNavigate={(id) => scrollToSection(id)}
             theme={theme}
-            onToggleTheme={toggleTheme}
           />
 
           {/* Hero Banner with Original Imagery and Gradients */}
@@ -197,6 +196,8 @@ export default function App() {
             onToast={showToast}
           />
         </main>
+        <ParticleEffect isLight={isLight} />
+        </>
       )}
 
       {/* Slide-over Cart Drawer */}

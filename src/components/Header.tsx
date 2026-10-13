@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Search, User, ShoppingBag, Sun, Moon } from 'lucide-react';
+import { Search, User, ShoppingBag } from 'lucide-react';
 
 interface HeaderProps {
   cartCount: number;
@@ -8,7 +8,6 @@ interface HeaderProps {
   onOpenModal: (name: string) => void;
   onNavigate: (id: string) => void;
   theme: 'dark' | 'light';
-  onToggleTheme: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -18,7 +17,6 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenModal,
   onNavigate,
   theme,
-  onToggleTheme,
 }) => {
   const [scrolled, setScrolled] = useState(false);
   const isLight = theme === 'light';
@@ -131,24 +129,6 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Action Icons */}
         <div className="flex justify-end items-center gap-2.5 sm:gap-4 md:gap-5">
-          {/* Theme Toggle (Dark / Light) */}
-          <button
-            onClick={onToggleTheme}
-            aria-label={`Switch to ${isLight ? 'Dark' : 'Light'} Mode`}
-            title={`Switch to ${isLight ? 'Obsidian Dark' : 'Ivory Light'} Mode`}
-            className={`p-2 transition-all duration-300 rounded-full border relative group ${
-              isLight
-                ? 'text-[#332f29] border-[#d8d2c4] hover:bg-black/5 hover:border-[#141212]'
-                : 'text-[#e8e0d4] border-[rgba(232,224,212,0.2)] hover:bg-white/5 hover:border-[#b3262b]'
-            }`}
-          >
-            {isLight ? (
-              <Moon className="w-[17px] h-[17px] transition-transform duration-300 group-hover:-rotate-12 text-[#9c1c20]" />
-            ) : (
-              <Sun className="w-[17px] h-[17px] transition-transform duration-300 group-hover:rotate-45 text-[#e8e0d4]" />
-            )}
-          </button>
-
           <button
             onClick={onOpenSearch}
             aria-label="Search items"
